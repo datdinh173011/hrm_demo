@@ -1,11 +1,34 @@
 FROM python:3.11-slim
 
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Set work directory
 WORKDIR /app
 
-COPY requirements.txt .
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+        build-essential \
+        libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . . 
+# Copy project
+COPY . /app/
+
+# Create and switch to non-root user
+RUN adduser --disabled-password --gecos '' appuser
+RUN chown -R appuser:appuser /app
+USER appuser
+
+# Expose port
+EXPOSE 8000
+
+# Command will be overridden by docker-compose
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"] 
