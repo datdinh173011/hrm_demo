@@ -32,10 +32,10 @@ class BaseModelProperty(models.Model):
 
     # history
     created_by = models.ForeignKey(
-        "account.User", blank=True, null=True, on_delete=models.SET_NULL,
+        "users.User", blank=True, null=True, on_delete=models.SET_NULL,
         related_name="created_%(class)ss", related_query_name="created_%(class)s")
     changed_by = models.ForeignKey(
-        "account.User", blank=True, null=True, on_delete=models.SET_NULL,
+        "users.User", blank=True, null=True, on_delete=models.SET_NULL,
         related_name="changed_%(class)ss", related_query_name="changed_%(class)s")
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
