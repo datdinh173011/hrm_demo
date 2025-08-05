@@ -51,10 +51,13 @@ class ContactFilter(django_filters.FilterSet):
 
             elif property_obj.type == 'option':
                 return queryset.filter(
-                    Q(contactproperty__property=property_obj,
-                      contactproperty__singleoption_value__code=value) |
-                    Q(contactproperty__property=property_obj,
-                      contactproperty__singleoption_value__value__icontains=value)
+                    Q(
+                        contactproperty__property=property_obj,
+                        contactproperty__singleoption_value__code=value
+                    ) | Q(
+                        contactproperty__property=property_obj,
+                        contactproperty__singleoption_value__value__icontains=value
+                    )
                 ).distinct()
 
         except Property.DoesNotExist:
