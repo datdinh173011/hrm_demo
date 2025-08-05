@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_spectacular',
     'users',
     'contacts'
 ]
@@ -72,7 +73,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 
@@ -90,6 +92,60 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
+}
+
+
+# OpenAPI/Swagger Configuration
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'HRM Contact Management API',
+    'DESCRIPTION': '''
+    A dynamic Human Resource Management API for contact management with flexible property-based attributes.
+
+    ## Features
+    - **Dynamic Property Filtering**: Filter by any contact property using URL parameters
+    - **Flexible Display Control**: Choose which fields to display using the `display` parameter
+    - **Type-Aware Search**: Automatically handles different property types (text, textarea, options)
+    - **Rate Limited**: Protected against abuse with configurable rate limits
+
+    ## Rate Limits
+    - **Contact API**: 100 requests per 5 minutes
+    - **General API**: 200 requests per 5 minutes
+
+    ## Authentication
+    This API supports multiple authentication methods:
+    - JWT Bearer tokens
+    - Session authentication
+    - Token authentication
+
+    For public endpoints like contacts listing, no authentication is required.
+    ''',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'CONTACT': {
+        'name': 'HRM API Support',
+        'email': 'api-support@hrm-demo.com'
+    },
+    'LICENSE': {
+        'name': 'MIT License',
+    },
+    'SERVERS': [
+        {
+            'url': 'http://127.0.0.1:8000',
+            'description': 'Development server'
+        }
+    ],
+    'TAGS': [
+        {
+            'name': 'Contacts',
+            'description': 'Contact management endpoints with dynamic property filtering'
+        },
+        {
+            'name': 'Authentication',
+            'description': 'JWT token management endpoints'
+        }
+    ],
+    'COMPONENT_SPLIT_REQUEST': True,
+    'SORT_OPERATIONS': False,
 }
 
 

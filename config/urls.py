@@ -20,10 +20,47 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
+from drf_spectacular.utils import extend_schema
+
+# Create tagged JWT views for better OpenAPI documentation
+
+
+class TaggedTokenObtainPairView(TokenObtainPairView):
+    @extend_schema(
+        tags=['Authentication'],
+        summary='Obtain JWT access and refresh tokens',
+        description='Login with username and password to get JWT tokens for API authentication.'
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+
+class TaggedTokenRefreshView(TokenRefreshView):
+    @extend_schema(
+        tags=['Authentication'],
+        summary='Refresh JWT access token',
+        description='Use refresh token to get a new access token.'
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Authentication endpoints
+    path('api/token/', TaggedTokenObtainPairView.as_view(),
+         name='token_obtain_pair'),
+    path('api/token/refresh/', TaggedTokenRefreshView.as_view(), name='token_refresh'),
+    # API endpoints
     path('api/v1/', include('contacts.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # OpenAPI/Swagger documentation endpoints
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'),
+         name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
