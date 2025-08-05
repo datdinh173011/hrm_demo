@@ -1,3 +1,3 @@
-from .contact import ContactSerializer, ContactDetailSerializer, ContactPropertyDetailSerializer
+from .contact import ContactSerializer, ContactPropertyDetailSerializer
 
-__all__ = ['ContactSerializer', 'ContactDetailSerializer', 'ContactPropertyDetailSerializer']
+__all__ = ['ContactSerializer', 'ContactPropertyDetailSerializer']
