@@ -1,13 +1,12 @@
-import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinLengthValidator
 from contacts.models.base import BaseModel
 
 TYPE_CHOICES = [
-    ('string', 'String'),
-    ('text', 'Text'),
-    ('option', 'Option'),
+    ('singleline', 'singleline'),
+    ('textarea', 'textarea'),
+    ('option', 'option'),
 ]
 
 

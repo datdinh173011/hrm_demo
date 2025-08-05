@@ -1,0 +1,81 @@
+{
+    "contact": [
+        {
+            "name": "FIRST NAME",
+            "slug": "first_name",
+            "type": "singleline"
+        },
+        {
+            "name": "LAST NAME",
+            "slug": "last_name",
+            "type": "singleline"
+        },
+        {
+            "name": "EMAIL",
+            "slug": "email",
+            "type": "singleline"
+        },
+        {
+            "name": "PHONE NUMBER",
+            "slug": "phone_number",
+            "type": "singleline"
+        },
+        {
+            "name": "LOCATION",
+            "slug": "location",
+            "type": "singleline"
+        },
+        {
+            "name": "DEPARTMENT",
+            "slug": "department",
+            "type": "option",
+            "settings": {
+                "option_type": "DROPDOWN",
+                "options": [
+                    {
+                        "name": "HR",
+                        "value": "hr"
+                    },
+                    {
+                        "name": "IT",
+                        "value": "it"
+                    },
+                    {
+                        "name": "SALES",
+                        "value": "sales"
+                    },
+                    {
+                        "name": "MARKETING",
+                        "value": "marketing"
+                    },
+                    {
+                        "name": "FINANCE",
+                        "value": "finance"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "STATUS",
+            "slug": "status",
+            "type": "option",
+            "settings": {
+                "option_type": "DROPDOWN",
+                "options": [
+                    {
+                        "name": "ACTIVE",
+                        "value": "active"
+                    },
+                    {
+                        "name": "INACTIVE",
+                        "value": "inactive"
+                    },
+                    {
+                        "name": "PENDING",
+                        "value": "pending"
+                    }
+                ]
+            }
+        }
+    ]
+}
