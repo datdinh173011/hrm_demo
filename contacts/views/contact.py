@@ -107,18 +107,18 @@ class ContactPagination(PageNumberPagination):
         summary='List contacts with dynamic filtering',
         description='''
         Retrieve a paginated list of contacts with powerful dynamic filtering and display control.
-        
         ## Dynamic Property Filtering
-        You can filter by any contact property using URL parameters. The system automatically detects the property type and applies the appropriate filter.
-        
+        You can filter by any contact property using URL parameters.
+        The system automatically detects the property type and applies the appropriate filter.
+
         **Property Types:**
-        - `singleline`: Text fields (first_name, last_name, email, phone_number, location)  
+        - `singleline`: Text fields (first_name, last_name, email, phone_number, location)
         - `textarea`: Long text fields (notes, descriptions)
         - `option`: Select fields (department, status, position)
-        
+
         ## Display Control
         Use the `display` parameter to control which fields are returned in the response.
-        
+
         ## Rate Limiting
         This endpoint is rate limited to 100 requests per 5 minutes per IP address.
         ''',
@@ -140,9 +140,12 @@ class ContactPagination(PageNumberPagination):
                 location=OpenApiParameter.QUERY,
                 description='Comma-separated list of property slugs to display in response',
                 examples=[
-                    OpenApiExample('Basic info', value='first_name,last_name,email'),
-                    OpenApiExample('Work info', value='department,location,position'),
-                    OpenApiExample('All fields', value='first_name,last_name,email,phone_number,location,department,status,position'),
+                    OpenApiExample(
+                        'Basic info', value='first_name,last_name,email'),
+                    OpenApiExample(
+                        'Work info', value='department,location,position'),
+                    OpenApiExample(
+                        'All fields', value='first_name,last_name,email,phone_number,location,department,status,position'),
                 ]
             ),
             OpenApiParameter(
@@ -164,7 +167,8 @@ class ContactPagination(PageNumberPagination):
                 type=OpenApiTypes.STR,
                 location=OpenApiParameter.QUERY,
                 description='Filter by email address (partial match)',
-                examples=[OpenApiExample('Filter by domain', value='@company.com')]
+                examples=[OpenApiExample(
+                    'Filter by domain', value='@company.com')]
             ),
             OpenApiParameter(
                 name='department',
