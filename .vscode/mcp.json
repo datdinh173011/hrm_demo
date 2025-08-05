@@ -1,0 +1,14 @@
+{
+    "servers": {
+        "postgres": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "mcp/postgres",
+                "postgresql://postgres:postgres@localhost:5433/dashboard"
+            ]
+        }
+    }
+}
