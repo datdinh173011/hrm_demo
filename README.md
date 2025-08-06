@@ -73,7 +73,7 @@ hrm_demo/
 1. **Install dependencies:**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate
    pip install -r requirements.txt
    ```
 
@@ -110,7 +110,7 @@ The API supports multiple authentication methods:
 ```bash
 curl -X POST http://localhost:8000/api/token/ \
   -H "Content-Type: application/json" \
-  -d '{"username": "your_username", "password": "your_password"}'
+  -d '{"username": "admin", "password": "admin123"}'
 ```
 
 ### Contact API Examples
