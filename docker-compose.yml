@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: hrm_web
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/venv
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - PYTHONPATH=/app
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/hrm_demo
+    depends_on:
+      - db
+    command: ["./scripts/docker_init.sh"]
+
+  db:
+    image: postgres:15
+    container_name: hrm_db
+    environment:
+      POSTGRES_DB: hrm_demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

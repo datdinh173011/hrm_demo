@@ -1,3 +1,4 @@
+import types
 from rest_framework import serializers
 from contacts.models import Contact, ContactProperty, Property
 
@@ -37,7 +38,6 @@ class ContactSerializer(serializers.ModelSerializer):
                 # Create the dynamic method for this field
                 method_name = f'get_{field_slug}'
                 # Bind the method to this instance
-                import types
                 getter_func = self._create_property_getter(property_obj)
                 setattr(self, method_name, types.MethodType(getter_func, self))
 

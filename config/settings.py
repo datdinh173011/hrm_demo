@@ -182,10 +182,7 @@ if os.environ.get('DATABASE_URL') or os.environ.get('POSTGRES_DB'):
             'USER': os.environ.get('POSTGRES_USER', 'postgres'),
             'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
             'HOST': os.environ.get('POSTGRES_HOST', 'db'),
-            'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-            'OPTIONS': {
-                'MAX_CONNS': 20
-            }
+            'PORT': os.environ.get('POSTGRES_PORT', '5432')
         }
     }
 else:
