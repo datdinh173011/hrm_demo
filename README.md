@@ -64,7 +64,6 @@ hrm_demo/
 
 3. **Access the application:**
    - API: http://localhost:8000/api/v1/contacts/
-   - Admin: http://localhost:8000/admin/
    - API Docs: http://localhost:8000/api/docs/
    - ReDoc: http://localhost:8000/api/redoc/
 
@@ -97,22 +96,6 @@ hrm_demo/
    python manage.py runserver
    ```
 
-## API Usage
-
-### Authentication
-
-The API supports multiple authentication methods:
-- JWT Bearer tokens (recommended)
-- Session authentication
-- Token authentication
-
-**Get JWT Token:**
-```bash
-curl -X POST http://localhost:8000/api/token/ \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin123"}'
-```
-
 ### Contact API Examples
 
 **List all contacts:**
@@ -137,7 +120,7 @@ curl "http://localhost:8000/api/v1/contacts/?display=first_name,last_name,email,
 
 **Pagination:**
 ```bash
-curl "http://localhost:8000/api/v1/contacts/?page=2&page_size=20"
+curl "http://localhost:8000/api/v1/contacts/?page=1&page_size=20"
 ```
 
 ### API Response Format
